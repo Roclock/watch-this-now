@@ -5,10 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch this Now!</title>
-    <link rel="stylesheet" type="text/css" href="assets.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/assets.css" />
+   <link rel="menusheet" type="text/css" href="./assets/menu.css"
 </head>
 <body>
-    
+    <!--  pulled from ::    https://semantic-ui.com/collections/menu.html --> 
+
+    <div class="ui grid">
+        <div class="four wide column">
+          <div class="ui vertical fluid tabular menu">
+            <a class="active item">
+              To Be Watched!
+            </a>
+            <a class="item">
+              Currently Watching.
+            </a>
+            <a class="item">
+              Finished watching!
+            </a>
+            <a class="item">
+              Notes.
+            </a>
+          </div>
+        </div>
+        <div class="twelve wide stretched column">
+          <div class="ui segment">
+            This is an stretched grid column. This segment will always match the tab height
+          </div>
+        </div>
+      </div>
 </body>
-<script src="script.js"></script>
+<script src="./assets/script.js"></script>
+<script src="./assets/modal.js"></script>
 </html>
