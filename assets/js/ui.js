@@ -199,7 +199,12 @@ function watched(movie) {
 
 // Function to watch trailer
 function trailer(movie) {
-    watchTrailer(movie.id);
+    $("#video-player").empty()
+    $("#trailer-title").text(movie.title);
+    $("#trailer-description").text(movie.plot);
+    $("#trailer-modal").modal("show");
+
+    watchTrailerEmbed(movie.id,$("#video-player"));
 }
 
 

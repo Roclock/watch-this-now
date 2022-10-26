@@ -16,7 +16,6 @@
 </head>
 
 <body class="bg-light">>
-
   <div class="ui pointing menu" style="background-color:black;color:white">
     <h2 class="item" style="background-color:black;color:white">Find Your Movies</h2>
     <div class="left menu">
@@ -51,6 +50,22 @@
     <h2>Results</h2>
     <div id="results" class="ui cards"></div>
   </article>
+
+  <div class="ui modal" id="trailer-modal">
+    <i class="close icon" id="trailer-close"></i>
+    <div class="header" id="trailer-title">
+    </div>
+    <div class="image content">
+      <div class="ui medium image">
+        <iframe id="video-player" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+        clipboard-write; encrypted-media; gyroscope;
+        picture-in-picture" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="description" style="margin-left:250px" id="trailer-description">
+      </div>
+    </div>
+  </div>
   </main>
   <!-- ✅ load jQuery ✅ -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -79,6 +94,11 @@
         $("#search").click();
       }
     });
+ 
+    $("#trailer-close").on("click", function (event) {
+      $("#video-player").attr("src", "");
+      $("#trailer-modal").modal("hide");
+    });
     // If the document is ready reload
     $(document).ready(function () {
       // Reload the page
@@ -87,5 +107,6 @@
 
   </script>
 </body>
+
 
 </html>
