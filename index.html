@@ -1,73 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch this Now!</title>
-    <link rel="stylesheet" type="text/css" href="./assets/assets.css" />
-   <link rel="menusheet" type="text/css" href="./assets/menu.css"
+    <meta name="viewport" content="initial-scale=1.0">
+    <!-- Link semantic-ui -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <!-- Add jquery -->
+    <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+
+
+
+    <title>Document</title>
 </head>
-<body>
-    <!--  pulled from ::    https://semantic-ui.com/collections/menu.html --> 
 
-    <div class="ui grid">
-        <div class="four wide column">
-          <div class="ui vertical fluid tabular menu">
-            <a class="active item">
-              To Be Watched!
-            </a>
-            <a class="item">
-              Currently Watching.
-            </a>
-            <a class="item">
-              Finished watching!
-            </a>
-            <a class="item">
-              Notes.
-            </a>
-          </div>
+<body class="bg-light">>
+
+    <div class="ui pointing menu" style="background-color:black;color:white">
+        <h2 class="item" style="background-color:black;color:white">Find Your Movies</h2>
+        <div class="left menu">
+            <div class="item">
+                <div class="ui transparent icon input" style="background-color:white;color:black">
+                    <input class="prompt" type="text" id="keyword" placeholder="Search movies...">
+                    <button class="ui button" id="search">
+                        <i class="search link icon"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="twelve wide stretched column">
-          <div class="ui segment">
-            This is an stretched grid column. This segment will always match the tab height
-          </div>
+    </div>
+    <section class="ui three column grid" style="padding-top:20px;padding-left:5px">
+        <div class="column center aligned">
+            <h1 class="">To Be watched</h1>
+            <div class="ui grid" style="min-height:150px; background:#B8DAFF">
+                <div id="to-be-watched" class="ui cards"></div>
+            </div>
         </div>
-      </div>
+        <div class="column center aligned"">
+                <h1>Watching</h1>
+                <div id="watching" class="ui cards" style="min-height:150px; background:#90DFAF"></div>
+        </div>
+        <div class="column center aligned"">
+                <h1>Watched</h1>
+                <div id="watched" class="ui cards" style="min-height:150px;background:#CEC5C5"></div>
+        </div>
+    </section>
+    <article class="center aligned" style="margin-top:20px;padding-left:20px;background:#D578D3">
+        <h2 class="ui dividing header"></h2>
+        <h2>Results</h2>
+        <div id="results" class="ui cards"></div>
+    </article>
+    </main>
+    <!-- ✅ load jQuery ✅ -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- ✅ load jQuery UI ✅ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="./assets/js/movie.js"></script>
+    <script src="./assets/js/ui.js"></script>
+    <script src="./assets/js/fetch_api.js"></script>
+    <script>
+
+        $("#search").on("click", function (event) {
+            var keyword = $("#keyword").val();
+            console.log("click");
+            $("#results").empty();
+            var movies = searchMovie(keyword, $("#results"));
+        });
+        // If the document is ready reload
+        $(document).ready(function () {
+            // Reload the page
+            reloadMovies();
+        });
+
+    </script>
 </body>
-<<<<<<< HEAD
-<script src="./assets/script.js"></script>
-<script src="./assets/modal.js"></script>
 </html>
-=======
-<script src="script.js"></script>
-</html>
-
-
-
-<!--  pulled from ::    https://semantic-ui.com/collections/menu.html 
-    <div class="ui grid">
-  <div class="four wide column">
-    <div class="ui vertical fluid tabular menu">
-      <a class="item">
-        Bio
-      </a>
-      <a class="item active">
-        Pics
-      </a>
-      <a class="item">
-        Companies
-      </a>
-      <a class="item">
-        Links
-      </a>
-    </div>
-  </div>
-  <div class="twelve wide stretched column">
-    <div class="ui segment">
-      This is an stretched grid column. This segment will always match the tab height
-    </div>
-  </div>
-</div>-->
-
->>>>>>> main
