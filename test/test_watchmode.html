@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0">
+    <!-- Add jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>WATCHMODE</title>
+    <header>WATCHMODE</header>
+
+<body>
+    <main>
+        <!-- Add search input -->
+        <input type="text" id="search" placeholder="Search for a movie">
+        <button id="searchBtn">Search</button>
+        <div>
+            <!-- Add results here -->
+            <p id="results"></p>
+        </div>
+    </main>
+    <script>
+        var API_KEY = "85UMQTqffYX1n4NPF04gPnfPgqw8Vdz6JYcnQyI8";
+        // 'https://api.watchmode.com/v1/autocomplete-search/?apiKey=YOUR_API_KEY&search_value=Breaking%20bad&search_type=1'
+        var BASE_URL = "https://api.watchmode.com";
+        var IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+        console.log("script");
+        var movies = {};
+
+        var logos = {
+            "Netflix": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/330px-Netflix_2015_logo.svg.png",
+            "Amazon Prime Video": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amazon_Prime_Video_logo.svg/338px-Amazon_Prime_Video_logo.svg.png",
+            "Amazon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amazon_Prime_Video_logo.svg/338px-Amazon_Prime_Video_logo.svg.png",
+            "Disney Plus": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/300px-Disney%2B_logo.svg.png",
+            "HBO MAX": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/HBO_Max_Logo.svg/330px-HBO_Max_Logo.svg.png",
+            "Hulu": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Hulu_Logo.svg/330px-Hulu_Logo.svg.png",
+            "Peacock": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/NBCUniversal_Peacock_Logo.svg/330px-NBCUniversal_Peacock_Logo.svg.png",
+            "Paramount+": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Paramount%2B_logo.png/330px-Paramount%2B_logo.png",
+            "Starz": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Starz_2022.svg/375px-Starz_2022.svg.png",
+            "Showtime": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Showtime_Networks.svg/330px-Showtime_Networks.svg.png",
+            "Apple": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Apple_TV_%28logo%29.svg/177px-Apple_TV_%28logo%29.svg.png",
+            "iTunes": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Apple_TV_%28logo%29.svg/177px-Apple_TV_%28logo%29.svg.png",
+            "Mubi": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mubi_logo.svg/330px-Mubi_logo.svg.png",
+            "VUDU": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Vudu_2014_logo.svg/330px-Vudu_2014_logo.svg.png",
+            "YouTube": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/375px-YouTube_Logo_2017.svg.png",
+            "Google Play": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Google_Play_2022_logo.svg/278px-Google_Play_2022_logo.svg.png",
+            "DirecTV On Demand": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/DIRECTV_2021_logo.svg/330px-DIRECTV_2021_logo.svg.png",
+            "Microsoft Store": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Microsoft_icon.svg/150px-Microsoft_icon.svg.png",
+            "Spectrum On Demand": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Charter_Spectrum_logo.svg/300px-Charter_Spectrum_logo.svg.png"
+
+        };
+
+
+        $("#results").text("Hello");
+
+        // Add searchBtn listener
+        $("#searchBtn").on("click", function (event) {
+            event.preventDefault();
+            $("#results").empty();
+            movies = {};
+            var query = $("#search").val().trim();
+            var queryURL = `${BASE_URL}/v1/autocomplete-search/?apiKey=${API_KEY}&search_value=${query}&search_type=1`;
+            $("#results").text("URL:" + queryURL);
+            fetch(queryURL)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    console.log(data);
+                    var result = JSON.stringify(data);
+                    for (var i = 0; i < data.results.length; i++) {
+                        var movie = data.results[i];
+                        movies[movie.id] = movie;
+                        if (movie.tmdb_type != null) {
+                            movies[movie.tmdb_id] = movie;
+                            //     // Find streaming services
+                            // var streamingURL = `${BASE_URL}/movie/${movie.id}/watch/providers?api_key=${API_KEY}`;
+                            var streamingURL = `${BASE_URL}/v1/title/${movie.id}/details/?apiKey=${API_KEY}&append_to_response=sources`;
+                            fetch(streamingURL)
+                                .then(function (response) {
+                                    return response.json();
+                                })
+                                .then(function (data) {
+                                    movie = data;
+                                    console.log(movie);
+                                    var streamingDiv = $("<div>");
+                                    // var streamingServices = data.results.US.flatrate;
+                                    //             if (streamingServices) {
+                                    //                 movie = movies[data.id];
+                                    var movieDiv = $("<div>");
+                                    var titleDiv = $("<a>")
+                                        .attr("href", `https://www.themoviedb.org/movie/${movie.tmdb_id}`)
+                                        .append($("<h3>").text(movie.title));
+
+                                    var posterDiv = $("<img>")
+                                        .attr("src", movie.poster)
+                                        .attr("width", "80px");
+
+                                    var sources = movie.sources.map(function (s) {
+                                        return s.name;
+                                    });
+                                    // Remove repeated strings from array
+                                    sources = sources.filter(function (item, pos) {
+                                        return sources.indexOf(item) == pos;
+                                    });
+                                    var networks = movie.network_names.join(", ");
+                                    var streamingDiv = $("<div>").text(`Sources: ${sources}`);
+                                    var networksDiv = $("<div>").text(`Networks: ${networks}`);
+                                    // movieDiv.append(titleDiv, posterDiv);
+                                    //                 var overviewDiv = $("<p>").text(movie.overview);
+                                    //                 var releaseDateDiv = $("<p>")
+
+                                    var streamingDiv = $("<div>")
+                                        .addClass("container row");
+                                    //                 if (streamingServices) {
+                                    for (var i = 0; i < sources.length; i++) {
+                                        var source = sources[i];
+                                        // var streamingServiceName = streamingService.name;
+                                        //                         var streamingName = $("<p>");
+                                        //                         var streamingServiceLogo = streamingService.logo_path;
+                                        console.log(source);
+                                        var streamingServiceLogoDiv = $("<img>")
+                                            .attr("src", logos[source])
+                                            .attr("width", "40px");
+                                        streamingDiv.append($("<p>").text("-"));
+                                        streamingDiv.append(streamingServiceLogoDiv);
+                                    }
+                                    // }
+                                    movieDiv.append(titleDiv, posterDiv, streamingDiv, networksDiv);
+
+                                    $("#results").append(movieDiv);
+                                })
+                        }
+                    }
+
+                });
+        });
+    </script>
+</body>
+
+</html>
