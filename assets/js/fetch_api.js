@@ -12,6 +12,38 @@ const MDBLIST_OPTIONS = {
     }
 }
 
+// Function to keep track of search history
+function saveToHistory(query) {
+     // Keep track of the search history
+     var searchHistory = loadSearchHistory();
+     searchHistory.push(query);
+     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+}
+
+function getSearchContent() {
+    var searchHistory = loadSearchHistory();
+    var content = [];
+    for (var i = 0; i < searchHistory.length; i++) {
+        var query = searchHistory[i];
+        content.push({ title: query });
+    }
+    return content;
+}
+
+// Fuction to load search history
+function loadSearchHistory() {
+    var searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    if (!searchHistory) {
+        searchHistory = [];
+    }
+    return searchHistory;
+}
+
+// Function to clear the search history
+function clearHistory() {
+    localStorage.clear();
+}
+
 function searchMovie(query, results) {
     var queryURL = `${BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}&language=en-US&page=1&include_adult=false`;
     fetch(queryURL)
@@ -26,6 +58,8 @@ function searchMovie(query, results) {
                 found(movie);
             }
         })
+        .catch(err => console.error(err));
+        saveToHistory(query);
 }
 
 // Function to add trailer data to the page

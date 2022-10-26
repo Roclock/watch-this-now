@@ -16,29 +16,70 @@ function createMovieIconCard(movie) {
     return item;
 }
 
-function createMovieListItem(movie) {
-    var item = $("<div>").addClass("item");
+function createMovieListItem2(movie) {
+    var item = $("<div>").addClass("card");
     var image = $("<img>")
-        .addClass("ui mini image")
+        .addClass("ui tiny image right floated")
         .attr("src", movie.poster)
         .attr("alt", movie.title)
         .attr("data-title", movie.title)
         .attr("data-content", movie.plot)
     var a = $("<a>").attr("href", movie.link());
-    // a.append(image);
+    a.append(image);
     var content = $("<div>").addClass("content");
-    var header = $("<h5>").addClass("header").text("⭐"+movie.title.substring(0,30));
+    var header = $("<p>").addClass("").text("⭐"+movie.title.substring(0,30));
     // var description = $("<div>").text(movie.plot.substring(0, 50) + "...");
     // var ranking = $("<div>").text(movie.ranking);
     content.append(header);
-    item.append(image, content);
+    item.append(a, header);
     return item;
+}
+
+function createMovieListItem(movie) {
+    var numChars = 50;
+    var movieCard = $("<div>")
+                        .addClass("ui card")
+                        .attr("style", "max-height: 150px;");
+
+    var image = $("<img>").addClass("right floated mini ui image").attr("src", movie.poster).attr("alt", movie.title);
+    var a = $("<a>").attr("href", movie.link());
+    a.append(image);
+    var movieBody = $("<h5>")
+        .addClass("header")
+        .attr("style", "background-color:grey; color:white;height:90%;");
+    var title = movie.title;//.substring(0,numChars);
+
+    var movieTitle = $("<p>")
+        .addClass("title")
+        .text(title)
+        // movieTitle.append(movieTitleFill);
+    // var plot = movie.plot;
+    // var moviePlot = $("<div>").addClass("extra-content").text(plot);
+    // var movieRanking = $("<div>").addClass("extra content").text(`Ranking: ${movie.ranking}`);
+    // movieTitle.append(moviePoster);
+    movieCard.append(movieBody.append(a,movieTitle));
+    return movieCard;
+}
+
+// Helper fuction to convert movie ranking to heart emoji list
+function rankingIcon(ranking) {
+    var heartEmojies = [ "💛", "💙","💚","💜","💜","❤️", "❤️", "❤️", "❤️"];
+    var emojieCount = 0;
+    var rank = "";
+    for(var i=0;i<Math.round(ranking);i++) {
+        rank += heartEmojies[emojieCount];
+        emojieCount++;
+        if(emojieCount >= heartEmojies.length) {
+            emojieCount = 0;
+        }
+    }
+    return rank + " " + ranking;
 }
 
 function createMovieCard(movie) {
     var movieCard = $("<div>").addClass("blue card");
-    var image = $("<img>").addClass("right floated medium ui image").attr("src", movie.poster).attr("alt", movie.title).attr("width", "90%");
-    var a = $("<a>").attr("href", movie.link);
+    var image = $("<img>").addClass("right floated small ui image").attr("src", movie.poster).attr("alt", movie.title);
+    var a = $("<a>").attr("href", movie.link());
     a.append(image);
     var movieBody = $("<div>")
         .addClass("content")
@@ -49,7 +90,7 @@ function createMovieCard(movie) {
     var movieExtraContent = $("<div>")
         .addClass("extra content")
     var moviePlot = $("<div>").addClass("description").text(movie.plot.substring(0, 100) + "...");
-    var movieRanking = $("<div>").addClass("extra content").text(`❤💚💛💜💙⭐ ${movie.ranking}`);
+    var movieRanking = $("<div>").addClass("extra content").text(rankingIcon(movie.ranking));
     movieExtraContent.append(moviePlot, movieRanking);
     // movieTitle.append(moviePoster);
     movieCard.append(movieBody.append(a, movieTitle), movieExtraContent);
@@ -60,7 +101,7 @@ function createMovieCard(movie) {
 function createMovieListCard(movie) {
 
     var movieCard = $("<div>").addClass("red card");
-    var image = $("<img>").addClass("right floated small ui image").attr("src", movie.poster).attr("alt", movie.title).attr("width", "90%");
+    var image = $("<img>").addClass("right floated tiny ui image").attr("src", movie.poster).attr("alt", movie.title);
     var a = $("<a>").attr("href", movie.link());
     a.append(image);
     var movieBody = $("<div>")
@@ -84,11 +125,26 @@ function createButton(iconName, movie, actionmethod) {
         .addClass("ui icon button")
         // .text(text)
         .attr("data-movie", movie.toString())
-        .on("click", function () {
+        .on("click", function (event) {
             var newMovie = Movie.parse($(this).attr("data-movie"));
+               //    Get event target element
+            var target = $(event.target);
+            // Set button to loading
+            target.addClass("green");
+            target.text("✔");
+            // Get target children
+            var children = target.children()[0];
             actionmethod(newMovie);
         });
-    var icon = $("<i>").addClass(iconName + " icon");
+    var icon = $("<i>")
+        .addClass(iconName + " icon")
+        .on("click", function (event) {
+            event.stopPropagation();
+            // Get parent button
+            var parent = $(this).parent();
+            // Send click event to parent
+            parent.trigger("click");
+        });
     button.append(icon);
     return button;
 }
@@ -119,7 +175,7 @@ function createLink(iconName, movie, actionmethod) {
         // .text(iconName)
         .attr("data-movie", movie.toString())
 
-        .on("click", function () {
+        .on("click", function (event) {
             var newMovie = Movie.parse($(this).attr("data-movie"));
             actionmethod(newMovie);
         });
@@ -161,10 +217,6 @@ function toBeWatched(movie) {
     var results = $("#to-be-watched");
     // var card = createMovieCard(movie);
     var card = createMovieListCard(movie);
-    // var buttons = $("<div>")
-        // .addClass("header");
-    // var toBeWatchedButton = createButton("eye", movie, watching);
-    // var deleteButton = createButton("delete", movie, deleteMovie);
     var buttons = createCardLinks("eye",setWatching,"delete",deleteMovie,movie);
     // buttons.append(toBeWatchedButton, deleteButton);
     card.append(buttons);
