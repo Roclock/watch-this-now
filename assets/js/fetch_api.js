@@ -12,29 +12,8 @@ function searchMovie(query, results) {
             console.log(data);
             for (var i = 0; i < data.results.length; i++) {
                 var result = data.results[i];
-                var movie = {
-                    id: result.id,
-                    title: result.title,
-                    poster: IMAGE_URL + result.poster_path,
-                    overview: result.overview,
-                    ranking: result.vote_average,
-                    trailer: result.id
-                }
-
-                results.append($("<h2>").text(`${i + 1}.- ${movie.title}`));
-                results.append($("<p>").text(`Plot: ${movie.overview}`));
-                results.append($("<p>").text(`Ranking: ${movie.ranking}`));
-                results.append($('<img>')
-                    .attr("src", movie.poster)
-                    .attr("style", "width: 50px"));
-                results.append($("<p>")
-                    .append($("<button>")
-                        .text("Trailer")
-                        .attr("data-id", movie.id)
-                        .on("click", function () {
-                            watchTrailer($(this).attr("data-id"));
-                        })
-                    ));
+                var movie = new Movie(result.id, result.title, result.overview, IMAGE_URL + result.poster_path, result.vote_average, result.id, "toBeWatched");
+                found(movie);
             }
         })
 }
