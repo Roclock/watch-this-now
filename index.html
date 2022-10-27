@@ -7,58 +7,73 @@
   <meta name="viewport" content="initial-scale=1.0">
   <!-- Link semantic-ui -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <!-- Add link to card.css -->
+  <link rel="stylesheet" href="./assets/css/ui.css">
   <!-- Add jquery -->
   <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
   <title>WATCH-THIS-NOW</title>
 </head>
 
-<body class="bg-light">>
-  <div class="ui pointing menu" style="background-color:black;color:white">
-    <h2 class="item" style="background-color:black;color:white">Find Your Movies</h2>
-    <div class="left menu">
-      <div class="item">
-        <div class="ui search">
-          <div class="ui transparent icon input" style="background-color:white;color:black">
-            <!-- <label for="keyword">Movie:</label> -->
-            <!-- <input class="ui search prompt" type="text" id="keyword" autocomplete="on" placeholder="Search movies..."> -->
-            <input class="prompt" id="keyword" type="text" placeholder="Search movies...">
-            <div class="ui two buttons">
-              <button class="medium ui button" id="searchBtn">
-                <i class="search link icon"></i>
-              </button>
-              <button class="medium ui button" id="clearSearchBtn">
-                <i class="trash link icon"></i>
-              </button>
+<body class="bg-light">
+  <!-- Add hero using semantic-ui -->
+  <div class="ui inverted vertical masthead center aligned segment" id="hero">
+    <div class="ui text container">
+      <i class="film large icon"></i>
+      <h1 class="ui inverted header">
+        WATCH-THIS-NOW
+      </h1>
+      <h2>Find your next favorite movie</h2>
+    </div>
+  </div>
+  <div class="ui menu" id="menu-bar">
+    <div class="item">
+      <h2 class="ui" syle="margin:10px">Movies:</h2>
+      <div class="ui search">
+        <div class="ui icon input">
+          <input class="prompt" id="keyword" type="text" placeholder="Search Movies...">
+        </div>
+        <button class="ui button circular" style="background-color:#d75788" id="searchBtn">
+          <i class="search inverted link icon"></i>
+        </button>
+      </div>
+    </div>
+    <!-- <div class="ui mini two buttons"> -->
+    <!-- <button class="ui button" id="clearSearchBtn">
+      <i class="trash link icon"></i>
+    </button> -->
+  </div>
+  <div class="ui grid">
+    <div class="sixteen wide mobile eight wide tablet eight wide computer column">
+      <div class="column center aligned">
+        <h2>To Be watched</h2>
+        <div class="ui raised very padded container segment movie-cards" id="to-be-watched-cards">
+          <div class="ui grid">
+            <div id="to-be-watched" class="ui doubling cards"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sixteen wide mobile eight wide tablet eight wide computer column">
+      <div class="sixteen wide mobile eight wide tablet four wide computer column">
+        <div class="column center aligned">
+          <h2>Watching</h2>
+          <div class="ui raised very padded container segment movie-cards" id="watching-cards">
+            <div class="ui four doubling cards" id="watching">
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="sixteen wide mobile eight wide tablet four wide computer column">
+        <div class="column center aligned">
+          <h2>Watched</h2>
+          <div class="ui raised very padded container segment movie-cards" id="watched-cards">
+            <div class="ui four doubling cards" id="watched"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <section class="ui two column grid">
-    <div class="column center aligned">
-      <div class="ui raised very padded container segment">
-        <h1 class="">To Be watched</h1>
-        <div class="ui grid" style="max-height:85vh; background:#B8DAFF;overflow:auto">
-          <div id="to-be-watched" class="ui two cards"></div>
-        </div>
-      </div>
-    </div>
-    <section class="ui column">
-      <div class="column center aligned">
-        <div class="ui raised very padded container segment">
-          <h1>Watching</h1>
-          <div class="ui four doubling cards" id="watching" style="height:40vh;background:#90DFAF;overflow:auto"></div>
-        </div>
-      </div>
-      <div class="column center aligned">
-        <div class="ui raised very padded container segment">
-          <h1>Watched</h1>
-          <div class="ui cards" id="watched" style="height:40vh;background:#CEC5C5;overflow:auto"></div>
-        </div>
-      </div>
-    </section>
-  </section>
   <!-- Comment here to enable results on main page -->
   <!-- <article class="center aligned" style="margin-top:20px;padding-left:20px;background:#D578D3">
     <h2 class="ui dividing header"></h2>
@@ -72,7 +87,7 @@
     </div>
     <div class="image content">
       <div class="ui medium image">
-        <iframe id="video-player" width="560" height="315" title="YouTube video player" frameborder="0"
+        <iframe id="video-player" width="500" height="315" title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay;clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
@@ -81,15 +96,36 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal for movie details -->
+  <div class="ui modal" id="movie-modal">
+    <i class="close icon" id="movie-modal-close"></i>
+    <div class="header" id="movie-modal-title">
+    </div>
+    <div class="image content">
+      <div class="ui medium image">
+
+      </div>
+      <div class="description" style="margin-left:250px" id="movie-modal-description">
+      </div>
+    </div>
+  </div>
+
   <!-- Modal widow for search Results -->
   <div class="ui fullscreen modal" id="resultsmodal">
     <i class="close icon" id="results-close"></i>
     <div class="header" id="results-title">
       <h1>Search Results</h1>
     </div>
-    <div class="scrolling content" style="padding-left:80px;background:lightpink">
-      <div id="results" class="ui cards"></div>
+    <div class="sixteen wide mobile eight wide tablet eight wide computer center aligned column">
+      <!-- <div class="ui column"> -->
+      <!-- <div class="ui raised padded container segment"> -->
+      <div class="ui scrolling content">
+        <div id="search-results" class="ui doubling cards"></div>
+      </div>
+      <!-- </div> -->
     </div>
+    <!-- </div> -->
   </div>
   </main>
   <!-- ✅ load jQuery ✅ -->
@@ -103,56 +139,6 @@
   <script src="./assets/js/movie.js"></script>
   <script src="./assets/js/ui.js"></script>
   <script src="./assets/js/fetch_api.js"></script>
-  <script>
-    $("#searchBtn").on("click", function (event) {
-      var keyword = $("#keyword").val();
-      console.log("click");
-      $("#results").empty();
-      var movies = searchMovie(keyword, $("#results"));
-
-      // Comment starting here to disable search results modal
-      // if (movies > 0) {
-
-      $("#resultsmodal").modal({
-        centered: false
-      }).modal("show");
-
-      setTimeout(function () {
-        $('.ui.modal').modal('refresh');
-      }, 300);
-      // }
-      // Comment end here to disable search results modal
-    });
-
-    $("#keyword").on("keyup", function (event) {
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        $("#searchBtn").click();
-      }
-    });
-
-    $("#results-close").on("click", function (event) {
-      $("#results").empty();
-      $("resultsmodal").modal("hide");
-    });
-
-    $("#trailer-close").on("click", function (event) {
-      $("#video-player").attr("src", "");
-      $("#trailer-modal").modal("hide");
-    });
-
-    // If the document is ready reload
-    $(document).ready(function () {
-      // Reload the page
-      reloadMovies();
-      $('.ui.search')
-        .search({
-          source: getSearchContent(),
-          showNoResults: false
-        })
-        ;
-    });
-  </script>
 </body>
 
 </html>
