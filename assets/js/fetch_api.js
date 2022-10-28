@@ -3,6 +3,7 @@ var API_KEY = "b47e20bd83e9aac5340afcb226fa4def";
 var BASE_URL = "https://api.themoviedb.org/3";
 var IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 var TMDB_TYPE = "movie"; // movie, tv or multi
+var NOW_PLAYING = [];
 
 var MDBLIST_URL = "https://mdblist.p.rapidapi.com/?tm=";
 const MDBLIST_OPTIONS = {
@@ -138,6 +139,40 @@ function loadSearchHistory() {
 function clearHistory() {
     // Delete search history from local storage
     localStorage.removeItem("searchHistory");
+}
+//https://api.themoviedb.org/3/movie/now_playing?api_key=<<api_key>>&language=en-US&page=1
+function getNowPlaying(){
+    return NOW_PLAYING;
+}
+function searchNowPlaying() {
+    var queryURL = `${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=en-US`;
+    fetch(queryURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            for (var i = 0; i < data.results.length; i++) {
+                var result = data.results[i];
+                console.log(result);
+                // this.id = id;
+                // this.title = title;
+                // this.plot = plot;
+                // this.poster = poster;
+                // this.ranking = ranking;
+                // this.trailer = trailer;
+                // this.state = state;
+                // this.providers = providers;
+                // this.providersLogos = providersLogos;
+                // 
+                var poster = IMAGE_URL+result.poster_path;
+                var movie = new Movie(result.id,result.title,result.overview,poster,result.vote_average);
+                movie.releaseDate = result.release_date;
+console.log("Movie: ",movie);
+                NOW_PLAYING.push(movie);
+            }
+        })
+        .catch(err => console.error(err));
 }
 
 function searchMovie(query, results) {

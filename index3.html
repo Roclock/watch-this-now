@@ -18,6 +18,7 @@
   <title>Document</title>
 </head>
 
+<<<<<<< HEAD
 <body>
   <!--Added a navbar-->
   <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -55,6 +56,49 @@
         <div class="navbar-item">
           
               
+=======
+<body class="bg-light">
+  <!-- Add hero using semantic-ui -->
+  <div class="ui inverted vertical masthead center aligned segment" id="hero">
+    <div class="ui text container">
+      <div class="ui text container">
+        <a href="./index.html">
+          <i class="film large icon"></i>
+          <h1 class="ui inverted header">
+            WATCH-THIS-NOW
+          </h1>
+          <h2>Find New Movies. Make Your Watch List</h2>
+        </a>
+      </div>
+    </div>
+    <div class="ui text menu" id="menu-bar">
+      <div class="item">
+        <div class="ui search">
+          <div class="ui icon input">
+            <input class="prompt" id="keyword" type="text" placeholder="Search Movies...">
+          </div>
+          <button class="ui button circular" style="background-color:#d75788" id="searchBtn">
+            <i class="search inverted link icon"></i>
+          </button>
+          <a href="./now-playing.html" style="color:white">Now Playing
+            <i class="video camera icon"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="ui mini two buttons"> -->
+    <!-- <button class="ui button" id="clearSearchBtn">
+      <i class="trash link icon"></i>
+    </button> -->
+  </div>
+  <div class="ui grid">
+    <div class="sixteen wide mobile eight wide tablet eight wide computer column">
+      <div class="column center aligned">
+        <h2>To Be watched</h2>
+        <div class="ui raised very padded container segment movie-cards" id="to-be-watched-cards">
+          <div class="ui grid">
+            <div id="to-be-watched" class="ui two doubling cards"></div>
+>>>>>>> 69d0249a00cac15a31e3fbcdd1a9f7446a8a610e
           </div>
         </div>
       </div>
@@ -153,6 +197,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
   <script src="./assets/js/movie.js"></script>
+  <script src="./assets/js/ui-elements.js"></script>
   <script src="./assets/js/ui.js"></script>
   <script src="./assets/js/fetch_api.js"></script>
   <script>

@@ -1,13 +1,13 @@
-body{
+body {
   background-color: #acaaa5;
 }
 
-#hero{
+#hero {
   background-color: #313c5d;
 }
 
 #menu-bar {
-  background-color:  #306ed8;
+  background-color: #306ed8;
 }
 
 
@@ -18,22 +18,26 @@ h2 {
   /* padding: 1rem; */
   text-align: center;
 }
+
 /* Style for movie-mini-card class */
 /* .movie-mini-card {
   height: 30%;
   min-width: 1rem;
 }
 */
+p {
+  font-size: small;
+}
 
 .movie-small-card {
-  height: 60%;
+  max-height: 60%;
   width: 100%;
 }
 
 .movie-card-small-body {
   padding: 0.2rem;
   background-color: rgb(87, 88, 89);
-} 
+}
 
 
 .movie-card-small-title {
@@ -49,10 +53,10 @@ h2 {
   /* margin-left: 8vh; */
   /* margin-top:  -100%; */
   position: absolute;
-  top: 90%;
+  top: 120;
   left: 0.1rem;
   border: 1px solid greenyellow;
-} 
+}
 
 .card-buttons {
   color: #657ab6;
@@ -64,7 +68,7 @@ h2 {
 }
 
 .movie-text-card-title {
-  font-size: 1.3rem;
+  /* font-size: 1.3rem; */
   font-weight: bold;
 }
 
@@ -74,50 +78,51 @@ h2 {
 }
 
 
-.extra-content{
+.extra-content {
   font-size: larger;
 }
 
 
 .movie-card-tiny-body {
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   background-color: rgb(36, 43, 50);
-} 
-
-.movie-tiny-card {
-
 }
 
- .movie-card-tiny-body {
-  font-size: 1.5rem;
+.movie-tiny-card {
+  height: 60%;
+}
+
+.movie-card-tiny-body {
+  /* font-size: 1.5rem; */
   padding: 0.2rem;
   background-color: rgb(87, 88, 89);
-}  
+}
+
 /* Style for movie card tiny title */
 .movie-card-tiny-title {
   color: #ffffff;
-  font-size: 1.5rem;
-  padding-top: 1.5rem;
+  /* font-size: 1.5rem; */
+  /* padding-top: 1.5rem; */
   text-align: center;
-  max-width: 50px;
+  /* max-width: 50px; */
 }
 
 .movie-card-mini-body {
   padding-right: 0.1rem;
   background-color: rgb(87, 88, 89);
-  font-size: 0.5rem;
+  /* font-size: 0.5rem; */
   text-align: left;
-} 
+}
 
 /* Style for movie card tiny title */
- .movie-card-mini-title {
+.movie-card-mini-title {
   color: #ffffff;
-  font-size: 1.3rem;
+  /* font-size: 1.3rem; */
   padding-top: 0rem;
   margin-top: 0.1rem;
   margin-left: 0.2rem;
   text-align: left;
-} 
+}
 
 /* Style for movie card tiny title */
 /* .movie-card-small-title {
@@ -145,8 +150,9 @@ h2 {
   /* padding: 1rem; */
   text-align: center;
 }
+
 /* Styling for movie-cards container */
-.movie-cards{
+.movie-cards {
   justify-content: center;
   align-items: center;
   /* margin: 1rem; */
@@ -156,67 +162,78 @@ h2 {
   /* padding: 1rem; */
 }
 
-#to-be-watched-cards{
+#to-be-watched-cards {
   max-height: 95vh;
-  padding-left: 10rem;  
+  padding-left: 10rem;
   background-color: #306ed8;
 }
 
-#watched-cards{
+#watched-cards {
   max-height: 50vh;
   margin-top: 0.5rem;
   background-color: #313c5d;
 }
 
-#watching-cards{
+#watching-cards {
   max-height: 50vh;
   margin-top: 0.5rem;
   background-color: #91a5cb;
 }
 
-#search-results{
-  padding-left:10rem;
+#search-results {
+  padding-left: 10rem;
+  background-color: #d75788;
+}
+
+
+#now-playing {
+  padding-left: 5rem;
   background-color: #d75788;
 }
 
 
 @media (max-width: 819px) {
 
-    /* Call reset.css to remove all previous styling */
-    /* Removing all padding and margins for small screen size optimization */
-    * {
-        padding: 0.0rem;
-        margin: 0.0rem;
-    }
+  /* Call reset.css to remove all previous styling */
+  /* Removing all padding and margins for small screen size optimization */
+  * {
+    padding: 0.0rem;
+    margin: 0.0rem;
+  }
 
-    header {
-        font-size: larger;
-    }
+  header {
+    font-size: larger;
+  }
 
-    footer{
-        font-size: x-small;
-    }
+  footer {
+    font-size: x-small;
+  }
 
-    .movie-cards{
-      max-height: 40vh;
-    }
+  .movie-cards {
+    max-height: 40vh;
+  }
 
-    #menu-bar {
-      margin-left: 1rem;
-    }
+  #menu-bar {
+    /* margin-left: 1rem; */
+  }
 
-    #hero{
-      margin-left: 1rem;
-    }
+  #hero {
+    margin-left: 1rem;
+  }
 
-    #search-results{
-      padding-left: 4rem;
-    }
+  #search-results {
+    padding-left: 4rem;
+  }
 
-    #to-be-watched-cards{
-      max-height: 50vh;
-      padding-left: 2rem
-    }
-    
+  #to-be-watched-cards {
+    max-height: 50vh;
+    padding-left: 2rem
+  }
+
+
+  #now-playing {
+    padding-left: 0rem;
+    /* background-color: #d75788; */
+  }
+
 }
-
