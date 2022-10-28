@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1.0">
+        <!-- Link semantic-ui -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+        <link rel="stylesheet" href="./assets/css/reset.css">
+        <!-- Add link to card.css -->
+        <link rel="stylesheet" href="./assets/css/ui.css">
+        <!-- Add jquery -->
+        <link
+            href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css"
+            rel="stylesheet" />
+        <title>WATCH-THIS-NOW</title>
+    </head>
+
+    <body class="bg-light">
+        <!-- Add hero using semantic-ui -->
+        <div class="ui inverted vertical masthead center aligned segment"
+            id="hero">
+            <div class="ui text container">
+                <a href="./index.html">
+                    <i class="film large icon"></i>
+                    <h1 class="ui inverted header">
+                        WATCH-THIS-NOW
+                    </h1>
+                    <h2>Find Movies Now Playing in Theaters</h2>
+                </a>
+            </div>
+        </div>
+        <div class="ui menu" id="menu-bar">
+            <div class="item">
+                <h2 class="ui" syle="margin:10px">Movies:</h2>
+                <div class="ui search">
+                    <div class="ui icon input">
+                        <input class="prompt" id="np-keyword" type="text"
+                            placeholder="Enter city...">
+                    </div>
+                    <button class="ui button circular"
+                        style="background-color:#d75788" id="np-searchBtn">
+                        <i class="search inverted link icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="ui mini two buttons"> -->
+        <!-- <button class="ui button" id="clearSearchBtn">
+      <i class="trash link icon"></i>
+    </button> -->
+        <div class="ui grid">
+            <div class="sixteen wide mobile eight wide tablet sixteen wide
+                computer column">
+                <div class="column center aligned">
+                    <h2>Now Playing</h2>
+                    <div class="ui raised very padded container segment
+                        now-playing-cards" id="now-playing-cards">
+                        <div class="ui grid">
+                            <div id="now-playing" class="ui doubling cards"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui modal" id="np-trailer-modal">
+                <i class="close icon" id="np-trailer-close"></i>
+                <div class="header" id="np-trailer-title">
+                </div>
+                <div class="image content">
+                  <div class="ui medium image">
+                    <iframe id="np-video-player" width="500" height="315" title="YouTube video player" frameborder="0"
+                      allow="accelerometer; autoplay;clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen>
+                    </iframe>
+                  </div>
+                  <div class="description" style="margin-left:250px" id="np-trailer-description">
+                  </div>
+                </div>
+              </div>
+        </main>
+        <!-- ✅ load jQuery ✅ -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+        <!-- ✅ load jQuery UI ✅ -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+            integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.js"></script>
+        <script src="./assets/js/movie.js"></script>
+        <script src="./assets/js/ui-elements.js"></script>
+        <script src="./assets/js/now-playing.js"></script>
+        <script src="./assets/js/fetch_api.js"></script>
+    </body>
+
+</html>

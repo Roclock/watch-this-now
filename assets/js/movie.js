@@ -1,7 +1,7 @@
 // Create Movie Class
 class Movie {
 
-    constructor(id, title, plot, poster, ranking, trailer, state,providers,providersLogos) {
+    constructor(id, title, plot, poster, ranking, trailer, state,providers,providersLogos,releaseDate) {
         this.id = id;
         this.title = title;
         this.plot = plot;
@@ -11,7 +11,9 @@ class Movie {
         this.state = state;
         this.providers = providers;
         this.providersLogos = providersLogos;
+        this.releaseDate = releaseDate;
     }
+
 
     isToBeWatched() {
         return this.state === "to-be-watched";
