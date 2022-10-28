@@ -155,16 +155,6 @@ function searchNowPlaying() {
             for (var i = 0; i < data.results.length; i++) {
                 var result = data.results[i];
                 console.log(result);
-                // this.id = id;
-                // this.title = title;
-                // this.plot = plot;
-                // this.poster = poster;
-                // this.ranking = ranking;
-                // this.trailer = trailer;
-                // this.state = state;
-                // this.providers = providers;
-                // this.providersLogos = providersLogos;
-                // 
                 var poster = IMAGE_URL+result.poster_path;
                 var movie = new Movie(result.id,result.title,result.overview,poster,result.vote_average);
                 movie.releaseDate = result.release_date;
