@@ -1,7 +1,7 @@
 // Create Movie Class
 class Movie {
 
-    constructor(id, title, plot, poster, ranking, trailer, state) {
+    constructor(id, title, plot, poster, ranking, trailer, state,providers,providersLogos) {
         this.id = id;
         this.title = title;
         this.plot = plot;
@@ -9,6 +9,8 @@ class Movie {
         this.ranking = ranking;
         this.trailer = trailer;
         this.state = state;
+        this.providers = providers;
+        this.providersLogos = providersLogos;
     }
 
     isToBeWatched() {
@@ -95,15 +97,32 @@ class Movie {
         var movies = Movie.loadJSON();
         var movieObjects = [];
         movies.forEach(function (movie) {
-            movieObjects.push(new Movie(movie.id, movie.title, movie.plot, movie.poster, movie.ranking, movie.trailer, movie.state));
+            movieObjects.push(new Movie(movie.id, movie.title, movie.plot, movie.poster, movie.ranking, movie.trailer, movie.state,movie.providers,movie.providersLogos));
         });
-        return movieObjects;
+
+        return Movie.sort(movieObjects);
     }
 
     // Add static method to parse the movie object and return a new movie object
     static parse(movieJson) {
         var movie = JSON.parse(movieJson);
-        return new Movie(movie.id, movie.title, movie.plot, movie.poster, movie.ranking, movie.trailer, movie.state);
+        return new Movie(movie.id, movie.title, movie.plot, movie.poster, movie.ranking, movie.trailer, movie.state,movie.providers,movie.providersLogos);
+    }
+
+    static sort(movies) {
+        movies.sort(function (a, b) {
+            var titleA = a.title.toUpperCase(); // ignore upper and lowercase
+            var titleB = b.title.toUpperCase(); // ignore upper and lowercase
+            if (titleA < titleB) {
+                return -1;
+            }
+            if (titleA > titleB) {
+                return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+        return movies;
     }
 }
 // // Create the godfather movie
