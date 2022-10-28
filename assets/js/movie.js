@@ -1,6 +1,6 @@
 // Create Movie Class
 class Movie {
-    
+
     constructor(id, title, plot, poster, ranking, trailer, state) {
         this.id = id;
         this.title = title;
@@ -31,7 +31,7 @@ class Movie {
     // Return movie info link
     link() {
         // Return tmdb link
-        var l = "https://www.themoviedb.org/movie/"+this.id;
+        var l = "https://www.themoviedb.org/movie/" + this.id;
         return l;
     }
     // Fuction to save movie to storage
