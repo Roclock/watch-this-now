@@ -19,23 +19,29 @@
   <!-- Add hero using semantic-ui -->
   <div class="ui inverted vertical masthead center aligned segment" id="hero">
     <div class="ui text container">
-      <i class="film large icon"></i>
-      <h1 class="ui inverted header">
-        WATCH-THIS-NOW
-      </h1>
-      <h2>Find your next favorite movie</h2>
+      <div class="ui text container">
+        <a href="./index.html">
+          <i class="film large icon"></i>
+          <h1 class="ui inverted header">
+            WATCH-THIS-NOW
+          </h1>
+          <h2>Find New Movies. Make Your Watch List</h2>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="ui menu" id="menu-bar">
-    <div class="item">
-      <h2 class="ui" syle="margin:10px">Movies:</h2>
-      <div class="ui search">
-        <div class="ui icon input">
-          <input class="prompt" id="keyword" type="text" placeholder="Search Movies...">
+    <div class="ui text menu" id="menu-bar">
+      <div class="item">
+        <div class="ui search">
+          <div class="ui icon input">
+            <input class="prompt" id="keyword" type="text" placeholder="Search Movies...">
+          </div>
+          <button class="ui button circular" style="background-color:#d75788" id="searchBtn">
+            <i class="search inverted link icon"></i>
+          </button>
+          <a href="./now-playing.html" style="color:white">Now Playing
+            <i class="video camera icon"></i>
+          </a>
         </div>
-        <button class="ui button circular" style="background-color:#d75788" id="searchBtn">
-          <i class="search inverted link icon"></i>
-        </button>
       </div>
     </div>
     <!-- <div class="ui mini two buttons"> -->
@@ -49,7 +55,7 @@
         <h2>To Be watched</h2>
         <div class="ui raised very padded container segment movie-cards" id="to-be-watched-cards">
           <div class="ui grid">
-            <div id="to-be-watched" class="ui doubling cards"></div>
+            <div id="to-be-watched" class="ui two doubling cards"></div>
           </div>
         </div>
       </div>
@@ -137,6 +143,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.js"></script>
   <script src="./assets/js/movie.js"></script>
+  <script src="./assets/js/ui-elements.js"></script>
   <script src="./assets/js/ui.js"></script>
   <script src="./assets/js/fetch_api.js"></script>
 </body>

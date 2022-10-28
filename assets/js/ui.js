@@ -1,8 +1,5 @@
 var myfoundMoviesCards = {};
-// Helper function to determine if window is mobile
-function isMobile() {
-    return window.innerWidth <= 800;
-}
+var myToBeWatchedMoviesCards = {};
 // Create movie card
 function createMovieAvatarCard(movie) {
     var item = $("<div>").addClass("item");
@@ -30,7 +27,7 @@ function createMovieTextCard(movie) {
     var a = $("<a>").attr("href", movie.link());
     // a.append(image);
     var content = $("<div>")
-        .addClass("extra-content movie-text-card-body")
+        .addClass("extra content movie-text-card-body")
     //     .attr("style", "height:95%;");
     var header = $("<p>")
         .addClass("title movie-text-card-title")
@@ -89,19 +86,6 @@ function createMovieMiniCard(movie) {
 }
 
 // Helper fuction to convert movie ranking to heart emoji list
-function rankingIcon(ranking) {
-    var heartEmojies = ["💛", "💙", "💚", "💜", "💜", "❤️", "❤️", "❤️", "❤️"];
-    var emojieCount = 0;
-    var rank = "";
-    for (var i = 0; i < Math.round(ranking); i++) {
-        rank += heartEmojies[emojieCount];
-        emojieCount++;
-        if (emojieCount >= heartEmojies.length) {
-            emojieCount = 0;
-        }
-    }
-    return rank + " " + ranking;
-}
 
 function createMovieTinyCard(movie) {
 
@@ -118,72 +102,10 @@ function createMovieTinyCard(movie) {
 
     var plot = movie.plot ? movie.plot.substring(0, 50) : "No plot available";
     var moviePlot = $("<p>")
-        .addClass("extra-content")
+        .addClass("extra content")
         .text(plot + "...");
     movieCard.append(movieBody.append(a, movieTitle), moviePlot);
     return movieCard;
-}
-
-function createMovieSmallCard(movie) {
-    var movieCard = $("<div>")
-        .addClass("card movie-small-card");
-    var image = $("<img>")
-        .addClass("right floated small ui image")
-        .attr("src", movie.poster)
-        .attr("alt", movie.title);
-    var a = $("<a>")
-        .attr("href", movie.link());
-    a.append(image);
-
-    var movieBody = $("<div>")
-        .addClass("header movie-card-small-body");
-
-    var movieTitle = $("<h3>")
-        .addClass("title movie-card-small-title")
-        .text(movie.title);
-    var movieExtraContent = $("<div>")
-        .addClass("extra-content");
-    var plot = movie.plot ? movie.plot.substring(0, 100) : "No plot available";
-    var moviePlot = $("<p>").addClass("description movie-card-small-content").text(plot + "...");
-    var movieRanking = $("<div>").addClass("extra-content").text(rankingIcon(movie.ranking));
-    movieExtraContent.append(moviePlot, movieRanking);
-    // movieTitle.append(moviePoster);
-    movieCard.append(movieBody.append(a, movieTitle), movieExtraContent);
-    return movieCard;
-}
-
-
-// fuction createButton
-function createButton(iconName, movie, actionmethod) {
-    var button = $("<button>")
-        .addClass("ui icon button")
-        // .text(text)
-        .attr("data-movie", movie.toString())
-        .on("click", function (event) {
-            var newMovie = Movie.parse($(this).attr("data-movie"));
-            //    Get event target element
-            var target = $(event.target);
-            // Set button to loading
-            // Hack to change button text if it is save button
-            if (iconName === "save") {
-                target.addClass("green");
-                target.text("✔");
-            }
-            // Get target children
-            var children = target.children()[0];
-            actionmethod(newMovie);
-        });
-    var icon = $("<i>")
-        .addClass(iconName + " icon")
-        .on("click", function (event) {
-            event.stopPropagation();
-            // Get parent button
-            var parent = $(this).parent();
-            // Send click event to parent
-            parent.trigger("click");
-        });
-    button.append(icon);
-    return button;
 }
 
 // Create card buttons
@@ -231,11 +153,17 @@ function createLink(iconName, movie, actionmethod) {
 
 function findProviders(movie) {
     // Add provider images to card
+    var cardLinks;
     var card = myfoundMoviesCards[movie.id];
-    // Get card children by class name
-    var cardLinks = card.children(".movie-card-small-body");
+    if (card){
+        cardLinks = card.children(".movie-card-small-body");
+    } else {
+        card = myToBeWatchedMoviesCards[movie.id];
+        cardLinks = card.children(".movie-card-tiny-body");
 
+    }
 
+     console.log("card",card,movie,"links:",cardLinks);
     var providerNum = movie.providers ? movie.providers.length : 0;
   
     for (var i = 0; i < providerNum; i++) {
@@ -252,7 +180,8 @@ function findProviders(movie) {
        
         // Add providerLink to the beggining of the cardLinks
         cardLinks.prepend(providerLink);
-    }
+    } 
+
 }
 
 function found(movie) {
@@ -294,6 +223,10 @@ function toBeWatched(movie) {
     // var card = createMovieSmallCard(movie);
     var card = createMovieTinyCard(movie);
     var buttons = createCardLinks("eye", setWatching, "delete", deleteMovie, movie);
+
+    myToBeWatchedMoviesCards[movie.id] = card;
+    // Get card children by class name
+    searchProvidersMovie(movie);
     // var link = createLink("video", movie, providers);
     // buttons.append(link);
     // buttons.append(toBeWatchedButton, deleteButton);
@@ -319,7 +252,7 @@ function watching(movie) {
 // Add watched function will add the movie to the database
 function watched(movie) {
     var results = $("#watched");
-    var card = createMovieTextCard(movie);
+    var card = createMovieMiniCard(movie);
     var buttons = $("<div>");//.addClass("ui two buttons");
     var button1 = createLink("archive", movie, deleteMovie);
 
@@ -393,7 +326,7 @@ function reloadMovies() {
     $("#watched").empty();
     var movies = Movie.loadMovies();
     movies.forEach(function (movie) {
-        // console.log(movie);
+        console.log("loading",movie);
         if (movie.isToBeWatched()) {
             toBeWatched(movie);
         } else if (movie.isWatching()) {
