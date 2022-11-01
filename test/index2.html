@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1.0">
+  <!-- Link semantic-ui -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+  <!-- Add jquery -->
+  <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+  <link re<!--Link to bulma-->
+  l="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+
+
+  <title>Document</title>
+</head>
+
+<body>
+  <!--Added a navbar-->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item">
+      
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item">
+          Home
+        </a>
+  
+        
+            <a class="navbar-item">
+              Contact
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item">
+              Report an issue
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+   <section class="bg-light">
+  <div class="ui pointing menu" style="background-color:black;color:white">
+    <h2 class="item" style="background-color:black;color:white">Find Your Movies</h2>
+    <div class="left menu">
+      <div class="item">
+        <div class="ui transparent icon input" style="background-color:white;color:black">
+          <input class="prompt" type="text" id="keyword" placeholder="Search movies...">
+          <button class="ui button" id="search">
+            <i class="search link icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---added a header-->
+  <section class="hero">
+    <div class="hero-body"> 
+      <p class= "title">
+        Watch this Now!
+
+      </p>
+      <p class="subtitle">
+        Your new favorite place to find, categorize, and talk about must watch movie and tv shows.
+
+      </p>
+    
+  </section>
+  
+  <section class="ui three column grid" style="padding-top:20px;padding-left:5px">
+    <div class="column center aligned">
+      <h1 class="">To Be watched</h1>
+      <div class="ui grid" style="min-height:150px; background:#B8DAFF">
+        <div id="to-be-watched" class="ui cards"></div>
+      </div>
+    </div>
+    <div class="column center aligned"">
+                <h1>Watching</h1>
+                <div id="watching" class="ui cards" style="min-height:150px; background:#90DFAF"></div>
+    </div>
+    <div class="column center aligned"">
+                <h1>Watched</h1>
+                <div id="watched" class="ui cards" style="min-height:150px;background:#CEC5C5"></div>
+    </div>
+  </section>
+  
+  <article class="center aligned" style="margin-top:20px;padding-left:20px;background:#D578D3">
+    <h2 class="ui dividing header"></h2>
+    <h2>Results</h2>
+    <div id="results" class="ui cards"></div>
+  </article>
+
+  <div class="ui modal" id="trailer-modal">
+    <i class="close icon" id="trailer-close"></i>
+    <div class="header" id="trailer-title">
+    </div>
+    <div class="image content">
+      <div class="ui medium image">
+        <iframe id="video-player" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+        clipboard-write; encrypted-media; gyroscope;
+        picture-in-picture" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="description" style="margin-left:250px" id="trailer-description">
+      </div>
+    </div>
+  </div>
+  </main>
+  
+     
+  </section>
+  
+    </div>
+  <!--added a footer-->
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
+    </div>
+  </footer>
+  <!-- ✅ load jQuery ✅ -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!-- ✅ load jQuery UI ✅ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+  <script src="./assets/js/movie.js"></script>
+  <script src="./assets/js/ui-elements.js"></script>
+  <script src="./assets/js/ui.js"></script>
+  <script src="./assets/js/fetch_api.js"></script>
+  <script>
+
+    $("#search").on("click", function (event) {
+      var keyword = $("#keyword").val();
+      console.log("click");
+      $("#results").empty();
+      var movies = searchMovie(keyword, $("#results"));
+    });
+    $("#keyword").on("keyup", function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        $("#search").click();
+      }
+    });
+ 
+    $("#trailer-close").on("click", function (event) {
+      $("#video-player").attr("src", "");
+      $("#trailer-modal").modal("hide");
+    });
+    // If the document is ready reload
+    $(document).ready(function () {
+      // Reload the page
+      reloadMovies();
+    });
+
+  </script>
+  
+</body>
+
+
+
+</html>
