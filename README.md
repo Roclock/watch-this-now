@@ -20,6 +20,8 @@ You've finished the Movie? Awesome job! Click the Check in the bottom left and i
 
 Give that Movie a thumbs up or down on how you rated it! (It will disappear at the moment, we have different plans for this!)
 
+## Demo Purposes
+![](./assets/images/Demo.gif)
 ## User Story
 As a user I want to create a website for movies I've watched and loved so that I am able to rewatch them at a later date.
 As a user I want to create a website for movies
