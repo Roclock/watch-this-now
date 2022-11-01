@@ -15,8 +15,7 @@ function renderLastRegistered(){
     for( var i=0; i<notes.length; i++) {
         $("#notes-list").append($("<li>").text(notes[i]));
     };
-noteInput.textContent = notes;
-console.log("mynotes " + notes);
+
 }
 
 saveButton.addEventListener("click", function(event){

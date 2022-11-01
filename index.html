@@ -17,50 +17,7 @@
   <title>WATCH-THIS-NOW</title>
 </head>
 
-<body>
-  <!--Added a navbar-->
-
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item">
-    
-    </a>
-
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
-
-      
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        
-            
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-          
+<body>    
 <div class="bg-light">
   <!-- Add hero using semantic-ui -->
   <div class="ui inverted vertical masthead center aligned segment" id="hero">
@@ -90,14 +47,6 @@
         </div>
       </div>
     </div>
-    
-     
-    
-  </section>
-    <!-- <div class="ui mini two buttons"> -->
-    <!-- <button class="ui button" id="clearSearchBtn">
-      <i class="trash link icon"></i>
-    </button> -->
   </div>
   <div class="ui grid">
     <div class="sixteen wide mobile eight wide tablet eight wide computer column">
@@ -129,17 +78,17 @@
         </div>
       </div>
        <!-- this is for notes on movies watched-->
-  <div>
-    <h1>Notes for watched movies</h1>
-    <input type="text" id="notes">
-    <button type="save" id="save">Save</button>
-</div>
       <div class="sixteen wide mobile eight wide tablet four wide computer column">
-        <div class="column center aligned">
+        <div class="column center aligned" >
           <h2>Notes for watched movies</h2>
-          <div class="ui raised very padded container segment movie-cards" id="notes-cards">
-            <div class="ui four doubling cards" id="notes-box">
-              <ul id="notes-list"></ul>
+          <div class="ui raised very padded container segment movie-cards" style="background-color: #d75788" id="notes-cards" >
+            <div class="ui icon input">
+            <input class="prompt" id="notes" type="text" placeholder="Enter your note...">
+            </div>
+            <button class="ui circular button" type="save" id="save">Save</button>
+            <br></br><br></br>
+            <div class="ui four doubling cards" style="background-color: white; min-height:150px" id="notes-box">
+              <ul class="ui list" id="notes-list" style="font-size:larger"></ul>
             </div>
           </div>
         </div>
@@ -147,13 +96,16 @@
     </div>
   </div>
   <!--Added a footer-->
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>
-        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-      </p>
+  <footer>
+    <div class="ui container center aligned">
+      <h3>Project created by <strong>Team 3</strong> at UofA Bootcamp &copy; 2022 - Powered by
+        <a class="logo" href="https://www.themoviedb.org/">
+          <img
+            src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+            alt="The Movie Database (TMDB)" width="75" height="10">
+        </a>
+        API
+      </h3>
     </div>
   </footer>
   <!-- Comment here to enable results on main page -->
