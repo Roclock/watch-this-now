@@ -1,7 +1,8 @@
-# watch-this-now
-proposal check list::
-project title: Watch this now!
- project description: An interactive website to keep track of shows and movies that you want to watch, are currently watching and have finished watching. You can add notes to show what shows you have enjoyed or not enjoyed. 
+<h1 style="background-color:#306ed8;color:white;text-align:center">Watch-This-Now</h1>
+<!-- proposal check list:: -->
+
+## Project description
+An interactive website to keep track of shows and movies that you want to watch, are currently watching and have finished watching. You can add notes to show what shows you have enjoyed or not enjoyed. 
 
 1. Our motivation for this project was to make an easier to read website, developed to show what movies you are currently watching.
 
@@ -20,8 +21,17 @@ You've finished the Movie? Awesome job! Click the Check in the bottom left and i
 
 Give that Movie a thumbs up or down on how you rated it! (It will disappear at the moment, we have different plans for this!)
 
+To view the website, please visit <a href="https://roclock.github.io/watch-this-now/">Watch-This-Now
+<!-- <img src="./assets/images/website.gif" width="500" /> -->
+</a>
+
+<!-- Add video to readme file -->
+<video width="640" height="480" controls autoplay>
+  <source src="./assets/images/screencast.webm" type="video/webm">
+</video>
+
 ## Contributors
 Ashe Radusewicz - https://github.com/Ashe-Radus
 Claudia Collins - https://github.com/ClaudiaCollins
 Daniel Flores - https://github.com/danielfloresd
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
