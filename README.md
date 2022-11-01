@@ -20,6 +20,20 @@ You've finished the Movie? Awesome job! Click the Check in the bottom left and i
 
 Give that Movie a thumbs up or down on how you rated it! (It will disappear at the moment, we have different plans for this!)
 
+## User Story
+As a user I want to create a website for movies I've watched and loved so that I am able to rewatch them at a later date.
+As a user I want to create a website for movies
+As a user I want to rate my movies (done)
+As a user I want to see what I've watched (Done)
+As a user I want to know what movies are out (done)
+As a user I want to search my movies I have watched (done)
+As a user I want to see movies I am currently watching (done)
+As a user I want to make notes on movies I've watched (done)
+## Future User Story
+As a user I want to categorize my movies (To-do)
+As a user I want to be able to categorize TV shows (To-do)
+As a user I want to be able to rate TV Shows (To-do)
+
 ## Contributors
 Ashe Radusewicz - https://github.com/Ashe-Radus
 Claudia Collins - https://github.com/ClaudiaCollins
