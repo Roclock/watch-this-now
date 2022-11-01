@@ -78,6 +78,16 @@
           </div>
         </div>
       </div>
+      <div class="sixteen wide mobile eight wide tablet four wide computer column">
+        <div class="column center aligned">
+          <h2>Notes for watched movies</h2>
+          <div class="ui raised very padded container segment movie-cards" id="notes-cards">
+            <div class="ui four doubling cards" id="notes-box">
+              <ul id="notes-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- Comment here to enable results on main page -->
@@ -133,6 +143,12 @@
     </div>
     <!-- </div> -->
   </div>
+  <!-- this is for notes on movies watched-->
+  <div>
+    <h1>Notes for watched movies</h1>
+    <input type="text" id="notes">
+    <button type="save" id="save">Save</button>
+</div>
   </main>
   <!-- ✅ load jQuery ✅ -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -146,6 +162,7 @@
   <script src="./assets/js/ui-elements.js"></script>
   <script src="./assets/js/ui.js"></script>
   <script src="./assets/js/fetch_api.js"></script>
+  <script src="./assets/js/notes.js"></script>
 </body>
 
 </html>
