@@ -151,10 +151,10 @@ function searchNowPlaying() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+          
             for (var i = 0; i < data.results.length; i++) {
                 var result = data.results[i];
-                console.log(result);
+              
                 // this.id = id;
                 // this.title = title;
                 // this.plot = plot;
@@ -168,7 +168,7 @@ function searchNowPlaying() {
                 var poster = IMAGE_URL+result.poster_path;
                 var movie = new Movie(result.id,result.title,result.overview,poster,result.vote_average);
                 movie.releaseDate = result.release_date;
-console.log("Movie: ",movie);
+
                 NOW_PLAYING.push(movie);
             }
         })
@@ -182,7 +182,7 @@ function searchMovie(query, results) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            
             for (var i = 0; i < data.results.length; i++) {
                 var result = data.results[i];
                 var movie = new Movie(result.id, result.title, result.overview, IMAGE_URL + result.poster_path, result.vote_average, result.id, "toBeWatched");
@@ -222,7 +222,7 @@ function searchProvidersMovie(movie) {
         .then(function (data) {
             // Will select only streaming providers
             if (data.results.US && data.results.US.flatrate) {
-                console.log(data.results.US.flatrate);
+               
                 var providersNames = data.results.US.flatrate.map(provider => provider.provider_name);
                 var providersLogos = data.results.US.flatrate.map(provider => `${IMAGE_URL}${provider.logo_path}`);
                 // console.log("providers: ", movie,providersNames, providersLogos);
@@ -261,7 +261,7 @@ function watchTrailerEmbed(tmdbID, videoPlayer) {
             // console.log("----------- trailer------")
             // console.log(data);
             var trailer = data.trailer;
-            console.log("trailer", trailer);
+           
             var embed = "https://www.youtube.com/embed/" + trailer.split("=")[1];
             videoPlayer.attr("src", embed);
         })
