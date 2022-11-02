@@ -35,6 +35,8 @@ function createButton(iconName, movie, actionmethod) {
     var button = $("<button>")
         .addClass("ui icon button")
         // .text(text)
+        .attr("alt", movie.title)
+        .attr("title", movie.title)
         .attr("data-movie", movie.toString())
         .on("click", function (event) {
             var newMovie = Movie.parse($(this).attr("data-movie"));
@@ -69,7 +71,7 @@ function createMovieSmallCard(movie) {
     var image = $("<img>")
         .addClass("right floated small ui image")
         .attr("src", movie.poster)
-        .attr("alt", movie.title);
+        .attr("alt", "Movie poster:" + movie.title);
     var a = $("<a>")
         .attr("href", movie.link());
     a.append(image);

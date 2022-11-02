@@ -6,14 +6,9 @@ function createMovieAvatarCard(movie) {
     var image = $("<img>")
         .addClass("ui avatar image")
         .attr("src", movie.poster)
-        .attr("alt", movie.title)
+        .attr("alt", "Movie " + movie.title)
     var a = $("<a>").attr("href", movie.link());
     a.append(image);
-    // var content = $("<div>").addClass("content");
-    // var header = $("<div>").addClass("header").text(movie.title);
-    // var description = $("<div>").text(movie.plot.substring(0, 50) + "...");
-    // var ranking = $("<div>").text(movie.ranking);
-    // content.append(header);
     item.append(a);
     return item;
 }
@@ -23,7 +18,7 @@ function createMovieTextCard(movie) {
     var image = $("<img>")
         .addClass("ui floated right avatar image")
         .attr("src", movie.poster)
-        .attr("alt", movie.title)
+        .attr("alt", "Movie " + movie.title);
     var a = $("<a>").attr("href", movie.link());
     // a.append(image);
     var content = $("<div>")
@@ -66,7 +61,7 @@ function createMovieMiniCard(movie) {
         .addClass("ui card movie-mini-card")
     // .attr("style", "max-height: 150px;");
 
-    var image = $("<img>").addClass("right floated mini ui image").attr("src", movie.poster).attr("alt", movie.title);
+    var image = $("<img>").addClass("right floated mini ui image").attr("src", movie.poster).attr("alt","Movie " +  movie.title);
     var a = $("<a>").attr("href", movie.link());
     a.append(image);
     var movieBody = $("<div>")
@@ -90,7 +85,7 @@ function createMovieMiniCard(movie) {
 function createMovieTinyCard(movie) {
 
     var movieCard = $("<div>").addClass("card movie-card-tiny");
-    var image = $("<img>").addClass("right floated tiny ui image").attr("src", movie.poster).attr("alt", movie.title);
+    var image = $("<img>").addClass("right floated tiny ui image").attr("src", movie.poster).attr("alt", "Movie " + movie.title);
     var a = $("<a>").attr("href", movie.link());
     a.append(image);
     var movieBody = $("<div>")
@@ -163,7 +158,6 @@ function findProviders(movie) {
 
     }
 
-     console.log("card",card,movie,"links:",cardLinks);
     var providerNum = movie.providers ? movie.providers.length : 0;
   
     for (var i = 0; i < providerNum; i++) {
@@ -175,7 +169,7 @@ function findProviders(movie) {
         var providerImage = $("<img>")
             .addClass("ui avatar image movie-card-small-avatar")
             .attr("src", providerLogo)
-            .attr("alt", pr.name);
+            .attr("alt", i + " " + pr + " logo");
         providerLink.append(providerImage);
        
         // Add providerLink to the beggining of the cardLinks
@@ -282,13 +276,14 @@ function trailer(movie) {
 }
 
 function providers(movie) {
-    console.log("providers", movie);
+    
     $("#provider-modal-images").empty();
     for (var i = 0; i < movie.providers.length; i++) {
         $("#provider-modal-images")
             .append($("<img>")
-                .attr("src", movie.providersLogos[i]))
-            .addClass("ui tiny image");
+                    .attr("src", movie.providersLogos[i])
+                    .attr("alt", "Providers " + movie.title)
+                    .addClass("ui tiny image"));
 
     }
     $("#provider-modal").modal("show");
@@ -326,7 +321,7 @@ function reloadMovies() {
     $("#watched").empty();
     var movies = Movie.loadMovies();
     movies.forEach(function (movie) {
-        console.log("loading",movie);
+   
         if (movie.isToBeWatched()) {
             toBeWatched(movie);
         } else if (movie.isWatching()) {
@@ -342,7 +337,7 @@ function initUI() {
 
     $("#searchBtn").on("click", function (event) {
         var keyword = $("#keyword").val().trim();
-        console.log("click");
+      
         $("#results").empty();
 
         // Clear movie card cache
@@ -392,7 +387,7 @@ function initUI() {
 $(document).ready(function () {
     // Reload the page
     initUI();
-    console.log("ready...................");
+    
     reloadMovies();
     $('.ui.search')
         .search({
