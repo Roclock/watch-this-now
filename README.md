@@ -1,7 +1,8 @@
-# watch-this-now
+<h1 style="background-color:#306ed8;color:white;text-align:center">Watch-This-Now</h1>
+
 proposal check list::
-project title: Watch this now!
- project description: An interactive website to keep track of shows and movies that you want to watch, are currently watching and have finished watching. You can add notes to show what shows you have enjoyed or not enjoyed. 
+## Project description: 
+An interactive website to keep track of shows and movies that you want to watch, are currently watching and have finished watching. You can add notes to show what shows you have enjoyed or not enjoyed. 
 
 1. Our motivation for this project was to make an easier to read website, developed to show what movies you are currently watching.
 
@@ -20,6 +21,8 @@ You've finished the Movie? Awesome job! Click the Check in the bottom left and i
 
 Give that Movie a thumbs up or down on how you rated it! (It will disappear at the moment, we have different plans for this!)
 
+To view the website, please visit <a href="https://roclock.github.io/watch-this-now/">Watch-This-Now</a>
+
 ## Demo Purposes
 ![](./assets/images/Demo.gif)
 ## User Story
@@ -37,7 +40,13 @@ As a user I want to be able to categorize TV shows (To-do)
 As a user I want to be able to rate TV Shows (To-do)
 
 ## Contributors
-Ashe Radusewicz - https://github.com/Ashe-Radus
-Claudia Collins - https://github.com/ClaudiaCollins
-Daniel Flores - https://github.com/danielfloresd
+<a href="https://github.com/Ashe-Radus">Ashe Radusewicz</a><br>
+<a href="https://github.com/ClaudiaCollins">Claudia Collins</a><br>
+<a href="https://github.com/danielfloresd">Daniel Flores</a>
 
+## Credits
+<a href="https://www.themoviedb.org">The Movide Database</a><br>
+<a href="https://mdblist.com/">Movie Search</a><br>
+<a href="https://https://semantic-ui.com/">Semantic UI</a>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
